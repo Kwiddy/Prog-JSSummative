@@ -14,3 +14,14 @@ Can be found at https://www.openprocessing.org/sketch/99379
 
 <b> My OpenProcessing File </b> <br>
 Can be found at https://www.openprocessing.org/sketch/634043 
+<br>
+
+<b> Possible Changes to Improve Original Code </b>
+<ul>
+  <li> Change particle colour </li>
+  <li> Change particle shape </li>
+  <li> Change particle speed </li>
+  <li> Change background colour </li>
+  <li> Explode on click? </li>
+  <li> Hide Nucleus Option </li>
+</ul>
