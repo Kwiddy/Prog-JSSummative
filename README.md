@@ -9,19 +9,20 @@ Choose a sketch from openprocessing.org and adapt it into a reusable component u
 </ul>
 
 <b> The Original Sketch </b> <br>
-Can be found at https://www.openprocessing.org/sketch/99379
+Can be found at https://www.openprocessing.org/sketch/409404
 <br>
 
 <b> My OpenProcessing File </b> <br>
-Can be found at https://www.openprocessing.org/sketch/634043 
+Can be found at https://www.openprocessing.org/sketch/642965
 <br>
 
 <b> Possible Changes to Improve Original Code </b>
 <ul>
-  <li> Change particle colour </li>
-  <li> Change particle shape </li>
-  <li> Change particle speed </li>
-  <li> Change background colour </li>
-  <li> Explode on click? </li>
-  <li> Hide Nucleus Option </li>
+  <li> Change particle colour / user has the option for colour? default is red orange yellow color slider</li>
+  <li> Each particle can bounce </li>
+  <li> when bounce they half stick </li>
+  <li> stuck = smoke + tiny particles + stay and burn </li>
+  <li> background slowly fills with smoke? / gets greyer </li>
+  <li> Reduce the number of particles </li>
+  <li> more realistic gravity </li>
 </ul>
