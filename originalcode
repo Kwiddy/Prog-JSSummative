@@ -1,95 +1,51 @@
-Particle[] particles;
-int planetX, planetY;
-int num = 1000;
+var stars = [];
 
-void setup() {
-  size(1000,800);
-  noStroke();
-  smooth();
-  planetX = width/2;
-  planetY = height/2;
-  particles = new Particle[num];
-  for (int i = 0; i < num; i++)
-    particles[i] = new Particle(new PVector(random(width), random(height)), 1, 10, 10);
-}
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+} 
 
-void draw() {
-  fill(0,55);
-  rect(0,0,width,height);
-  fill(125);
-  ellipse(planetX, planetY, 50,50);
-  
-  for (Particle particle : particles) {
-    particle.run(planetX, planetY);
+function draw() {
+  //background(0,0,0);
+  fill(0,10);
+  rect(0,0,windowWidth,windowHeight);
+  for (var i = 0;i<stars.length;i++) {
+    stars[i].update();
+    stars[i].show();
+    if (stars[i].pos.y>windowHeight) {
+      stars.splice(i,1);
+    }
+  }
+  if (mouseIsPressed == true) {
+    stars.push(new star());
+    stars[stars.length-1].start();
   }
 }
 
-void mousePressed() {
-  planetX = mouseX;
-  planetY = mouseY;
-}
-public class Particle {
-  PVector location;
-  PVector velocity;
-  PVector accel;
-  int size;
-  float gravity;
-  float mass;
-  int maxVelocity = 5;
-  float dist;
-  
-  public Particle(PVector loc, int size, float gravity, float mass) {
-    location = loc.get();
-    velocity = new PVector(0,0);
-    accel = new PVector(0,0);
-    this.size = size;
-    this.gravity = gravity;
-    this.mass = mass;
+function star() {
+  this.start = function() {
+    this.col = color(random(255),random(255),random(255));
+    this.pos = new p5.Vector(mouseX,mouseY);
+    this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
+    this.size = random(2,10);
   }
   
-  public void display() {
-    ellipseMode(CENTER);
-    fill(dist, 255, 255);
-    ellipse(location.x, location.y, size, size);
+  this.update = function() {
+    this.pos.x+=this.velocity.x;
+    this.pos.y+=this.velocity.y;
+    this.velocity.y+=0.05;
+    if (this.pos.x<0) {
+      this.pos.x = 0;
+      this.velocity.x=this.velocity.x*-1;
+    }
+    if (this.pos.x>windowWidth) {
+      this.pos.x = windowWidth;
+      this.velocity.x=this.velocity.x*-1;
+    }
   }
   
-  public void forces(float x, float y) {
-    PVector target = new PVector(x,y);
-    PVector dir = PVector.sub(location, target);
-    dist = dir.mag();
-    dir.normalize();
-    
-    float force = (gravity*mass)/(dist*dist);
-    
-    if (keyPressed) { }
-    else
-      dir.mult(-1);
-    applyForce(dir);
-  }
-  
-  public void applyForce(PVector force) {
-    force.div(mass);
-    accel.add(force);
-  }
-  
-  public void update() {
-    velocity.add(accel);
-    velocity.limit(maxVelocity);
-    location.add(velocity);
-    accel.mult(0);
-  }
-  
-  public void bounds() {
-    if(location.y > height || location.y < 0)
-      velocity.y *= -1;
-    if(location.x > width || location.x < 0)
-      velocity.x *= -1;
-  }
-  
-  public void run(float x, float y) {
-    forces(x,y);
-    display();
-    bounds();
-    update();
+  this.show = function() {
+    noStroke();
+    fill(this.col);
+    ellipse(this.pos.x,this.pos.y,this.size,this.size);
   }
 }
