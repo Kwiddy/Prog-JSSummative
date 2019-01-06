@@ -1,5 +1,5 @@
 var stars = [];
-var regen = false
+var regen = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
