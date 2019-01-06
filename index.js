@@ -26,7 +26,7 @@ function star() {
 		 if (regen == true) {
 			 this.col = color(220,220,220);
    	   this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
-   		 this.velocity = new p5.Vector(0,10);
+   		 this.velocity = new p5.Vector(0,5);
    		 this.size = random(2,10);
 			 regen = false;
 		 }
