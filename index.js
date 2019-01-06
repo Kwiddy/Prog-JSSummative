@@ -44,26 +44,39 @@ function star() {
   this.update = function() {
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
-    this.velocity.y+=0.05;
-    if (this.pos.x<0) {
-      this.pos.x = 0;
-      this.velocity.x=this.velocity.x*-1;
-    }
-    if (this.pos.x>windowWidth) {
-      this.pos.x = windowWidth;
-      this.velocity.x=this.velocity.x*-1;
-    }
-		if (this.pos.y>windowHeight) {
-			if (this.velocity.y > 2) {
-				this.pos.y = height;
-				this.velocity.y = this.velocity.y * -0.5;
+		if (this.velocity.x != 0) {
+    	this.velocity.y+=0.05;
+    	if (this.pos.x<0) {
+      	this.pos.x = 0;
+      	this.velocity.x=this.velocity.x*-1;
+   		}
+    	if (this.pos.x>windowWidth) {
+      	this.pos.x = windowWidth;
+      	this.velocity.x=this.velocity.x*-1;
+    	}
+			if (this.pos.y>windowHeight) {
+				if (this.velocity.y > 2) {
+					this.pos.y = height;
+					this.velocity.y = this.velocity.y * -0.5;
+				}
+				else {
+					this.velocity.y = 0;
+					this.velocity.x = 0;
+					this.pos.y = height;
+					this.size = 25;
+				}
 			}
-		else {
-			this.velocity.y = 0;
-			this.velocity.x = 0;
-			this.pos.y = height;
-			this.size = 25;
 		}
+		else {
+			if (this.velocity.y != 0) {
+				this.velocity.y = -10;
+				
+			if (this.pos.y>windowHeight) {
+				this.velocity.y = -5;
+				this.pos.y = windowHeight;
+				this.pos.x = randomint(windowWidth);
+			}
+			}
 		}
   }
 
