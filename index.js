@@ -1,5 +1,6 @@
 var stars = [];
 var regen = false;
+var sticked = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -64,18 +65,21 @@ function star() {
 					this.velocity.x = 0;
 					this.pos.y = height;
 					this.size = 25;
+					sticked = true;
 				}
 			}
 		}
 		else {
-			if (this.velocity.y != 0) {
-				this.velocity.y = -10;
+			if (sticked == true) {
+				if (this.velocity.y != 0) {
+					this.velocity.y = -3;
 				
-			if (this.pos.y>windowHeight) {
-				this.velocity.y = -5;
-				this.pos.y = windowHeight;
-				this.pos.x = randomint(windowWidth);
-			}
+					if (this.pos.y>windowHeight) {
+						this.velocity.y = -2;
+						this.pos.y = windowHeight;
+						this.pos.x = randomint(windowWidth);
+					}
+				}
 			}
 		}
   }
