@@ -1,8 +1,9 @@
 var stars = [];
+var regen = false
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-} 
+}
 
 function draw() {
   fill(0,10);
@@ -22,12 +23,24 @@ function draw() {
 
 function star() {
   this.start = function() {
-     this.col = color(random(255),random(255),random(255));
-   	 this.pos = new p5.Vector(mouseX,mouseY);
-   	 this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
-   	 this.size = random(2,10);
+		 if (regen == true) {
+			 this.col = color(220,220,220);
+   	   this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
+   		 this.velocity = new p5.Vector(0,10);
+   		 this.size = random(2,10);
+			 regen = false;
+		 }
+		 else {
+     	 this.col = color(random(255),random(255),random(255));
+   	   this.pos = new p5.Vector(mouseX,mouseY);
+   		 this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
+   		 this.size = random(2,10);
+			 regen = true;
+			 stars.push(new star());
+			 stars[stars.length-1].start();
+		 }
 	}
-  
+
   this.update = function() {
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
@@ -53,10 +66,14 @@ function star() {
 		}
 		}
   }
-  
+
   this.show = function() {
     noStroke();
     fill(this.col);
     ellipse(this.pos.x,this.pos.y,this.size,this.size);
   }
+}
+
+function randomint(max) {
+		return Math.floor(Math.random() * Math.floor(max));
 }
