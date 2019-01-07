@@ -2,6 +2,7 @@ var stars = [];
 var regen = false;
 var sticked = false;
 var bgcol = 0;
+var txtcol = 220;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -31,6 +32,14 @@ function draw() {
 function star() {
   this.start = function() {
 		 if (regen == true) {
+			 if (bgcol > 100) {
+			 	textSize(120);
+				textAlign("center");
+			 	fill(txtcol);
+			 	text("Your Text Here",(windowWidth/2),270);
+				txtcol -= 10;
+			 }
+			 
 			 this.col = color(220,220,220);
    	   this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
    		 this.velocity = new p5.Vector(0,5);
@@ -75,7 +84,7 @@ function star() {
 					this.velocity.y = 0;
 					this.velocity.x = 0;
 					this.pos.y = height;
-					this.size = random(15,25);
+					this.size = random(20,25)
 					sticked = true;
 				}
 			}
