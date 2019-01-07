@@ -32,12 +32,13 @@ function draw() {
 function star() {
   this.start = function() {
 		 if (regen == true) {
-			 if (bgcol > 100) {
+			 if (bgcol > 50) {
 			 	textSize(120);
 				textAlign("center");
 			 	fill(txtcol);
+	
 			 	text("Your Text Here",(windowWidth/2),270);
-				txtcol -= 10;
+				txtcol -= 0.1;
 			 }
 			 
 			 this.col = color(220,220,220);
