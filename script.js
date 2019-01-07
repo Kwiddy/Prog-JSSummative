@@ -10,6 +10,10 @@ function setup() {
 }
 
 function draw() {
+  myText = document.getElementById('myText').value;
+  if (myText == "") {
+    myText = "Your Text Here"
+  }
   fill(bgcol,10);
   rect(0,0,windowWidth,windowHeight);
   for (var i = 0;i<stars.length;i++) {
@@ -37,11 +41,11 @@ function star() {
 			 	textSize(120);
 				textAlign("center");
 			 	fill(txtcol);
-	
+
 			 	text(myText,(windowWidth/2),270);
 				txtcol -= 0.1;
 			 }
-			 
+
 			 this.col = color(220,220,220);
    	   this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
    		 this.velocity = new p5.Vector(0,5);
@@ -105,7 +109,7 @@ function star() {
 					if (bgcol < 220) {
 						bgcol += 0.0002;
 					}
-				
+
 					if (this.pos.y>windowHeight) {
 						this.velocity.y = -2;
 						this.pos.y = windowHeight;
