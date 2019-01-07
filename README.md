@@ -25,4 +25,7 @@ Can be found at https://www.openprocessing.org/sketch/642965
   <li> background slowly fills with smoke? / gets greyer </li>
   <li> Reduce the number of particles </li>
   <li> more realistic gravity </li>
+  <li> Perhaps the smoke reveals a word? </li>
+  <li> sparks follow the smoke? </li>
+  <li> particles explode when stick? </li>
 </ul>
