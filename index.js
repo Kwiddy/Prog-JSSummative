@@ -3,6 +3,7 @@ var regen = false;
 var sticked = false;
 var bgcol = 0;
 var txtcol = 220;
+var myText = "Your Text Here";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -37,7 +38,7 @@ function star() {
 				textAlign("center");
 			 	fill(txtcol);
 	
-			 	text("Your Text Here",(windowWidth/2),270);
+			 	text(myText,(windowWidth/2),270);
 				txtcol -= 0.1;
 			 }
 			 
@@ -62,8 +63,15 @@ function star() {
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
 		if (this.velocity.x == 0) {
+			if (bgcol < 200 ){
 			if (this.velocity.y == -2) {
 				this.size -= 0.5;
+			}
+			}
+			else {
+				if (this.velocity.y == -2) {
+					this.size -= 5;
+				}
 			}
 		}
 		if (this.velocity.x != 0) {
@@ -94,7 +102,9 @@ function star() {
 			if (sticked == true) {
 				if (this.velocity.y != 0) {
 					this.velocity.y = -2;
-					bgcol += 0.0001;
+					if (bgcol < 220) {
+						bgcol += 0.0001;
+					}
 				
 					if (this.pos.y>windowHeight) {
 						this.velocity.y = -2;
