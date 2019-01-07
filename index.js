@@ -20,6 +20,11 @@ function draw() {
     stars.push(new star());
     stars[stars.length-1].start();
   }
+	if (mouseIsPressed == false) {
+		regen = true;
+		stars.push(new star());
+    stars[stars.length-1].start();
+	}
 }
 
 function star() {
