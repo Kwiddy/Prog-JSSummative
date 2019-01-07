@@ -103,7 +103,7 @@ function star() {
 				if (this.velocity.y != 0) {
 					this.velocity.y = -2;
 					if (bgcol < 220) {
-						bgcol += 0.0001;
+						bgcol += 0.0002;
 					}
 				
 					if (this.pos.y>windowHeight) {
