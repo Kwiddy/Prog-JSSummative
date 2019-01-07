@@ -75,7 +75,7 @@ function star() {
 					this.velocity.y = 0;
 					this.velocity.x = 0;
 					this.pos.y = height;
-					this.size = 25;
+					this.size = random(15,25);
 					sticked = true;
 				}
 			}
