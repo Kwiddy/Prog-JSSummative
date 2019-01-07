@@ -51,6 +51,11 @@ function star() {
   this.update = function() {
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
+		if (this.velocity.x == 0) {
+			if (this.velocity.y == -2) {
+				this.size -= 0.5;
+			}
+		}
 		if (this.velocity.x != 0) {
     	this.velocity.y+=0.05;
     	if (this.pos.x<0) {
@@ -78,8 +83,8 @@ function star() {
 		else {
 			if (sticked == true) {
 				if (this.velocity.y != 0) {
-					this.velocity.y = -3;
-					bgcol += 0.0005;
+					this.velocity.y = -2;
+					bgcol += 0.0001;
 				
 					if (this.pos.y>windowHeight) {
 						this.velocity.y = -2;
