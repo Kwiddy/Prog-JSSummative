@@ -14,6 +14,9 @@ function draw() {
   if (myText == "") {
     myText = "Your Text Here"
   }
+  if (bgcol > 220) {
+    return;
+  }
   fill(bgcol,10);
   rect(0,0,windowWidth,windowHeight);
   for (var i = 0;i<stars.length;i++) {
