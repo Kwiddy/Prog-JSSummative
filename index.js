@@ -1,13 +1,14 @@
 var stars = [];
 var regen = false;
 var sticked = false;
+var bgcol = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  fill(0,10);
+  fill(bgcol,10);
   rect(0,0,windowWidth,windowHeight);
   for (var i = 0;i<stars.length;i++) {
     stars[i].update();
@@ -78,6 +79,7 @@ function star() {
 			if (sticked == true) {
 				if (this.velocity.y != 0) {
 					this.velocity.y = -3;
+					bgcol += 0.0001;
 				
 					if (this.pos.y>windowHeight) {
 						this.velocity.y = -2;
