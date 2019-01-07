@@ -16,7 +16,7 @@ Can be found at https://www.openprocessing.org/sketch/409404
 Can be found at https://www.openprocessing.org/sketch/642965
 <br>
 
-<b> Possible Changes to Improve Original Code </b>
+<b> General Possible Changes to Improve Original Code </b>
 <ul>
   <li> Change particle colour / user has the option for colour? default is red orange yellow color slider</li>
   <li> Each particle can bounce </li>
@@ -28,4 +28,10 @@ Can be found at https://www.openprocessing.org/sketch/642965
   <li> Perhaps the smoke reveals a word? </li>
   <li> sparks follow the smoke? </li>
   <li> particles explode when stick? </li>
+</ul>
+<b> Ideas for options and sliders</b>
+<ul>
+  <li> Change Smoke Colour </li>
+  <li> Change text </li>
+  <li< Change particle colour? </li>
 </ul>
