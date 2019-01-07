@@ -33,5 +33,5 @@ Can be found at https://www.openprocessing.org/sketch/642965
 <ul>
   <li> Change Smoke Colour </li>
   <li> Change text [achieved] </li>
-  <li< Change particle colour? </li>
+  <li> Change particle colour? </li>
 </ul>
