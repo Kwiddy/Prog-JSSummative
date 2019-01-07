@@ -18,14 +18,14 @@ Can be found at https://www.openprocessing.org/sketch/642965
 
 <b> General Possible Changes to Improve Original Code </b>
 <ul>
-  <li> Change particle colour / user has the option for colour? default is red orange yellow color slider</li>
-  <li> Each particle can bounce </li>
-  <li> when bounce they half stick </li>
-  <li> stuck = smoke + tiny particles + stay and burn </li>
-  <li> background slowly fills with smoke? / gets greyer </li>
+  <li> Change particle colour</li>
+  <li> Each particle can bounce [achieved] </li>
+  <li> when bounce they half stick  [achieved] </li>
+  <li> stuck = smoke + tiny particles + stay and burn [achieved]  </li>
+  <li> background slowly fills with smoke? / gets greyer [achieved]</li>
   <li> Reduce the number of particles </li>
-  <li> more realistic gravity </li>
-  <li> Perhaps the smoke reveals a word? </li>
+  <li> more realistic gravity [achieved] </li>
+  <li> Perhaps the smoke reveals a word? [achieved]</li>
   <li> sparks follow the smoke? </li>
   <li> particles explode when stick? </li>
 </ul>
