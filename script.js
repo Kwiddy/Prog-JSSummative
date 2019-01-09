@@ -1,7 +1,7 @@
 var stars = [];
 var ashes = [];
+var smokes = [];
 
-var regen = false;
 var stuck = false;
 var bgcol = 0;
 var txtcol = 220;
@@ -20,8 +20,17 @@ function draw() {
   if (bgcol > 220) {
     return;
   }
+  if (bgcol > 50) {
+   textSize(120);
+   textAlign("center");
+   fill(txtcol);
+
+   text(myText,(windowWidth/2),270);
+   txtcol -= 0.1;
+  }
   fill(bgcol,10);
   rect(0,0,windowWidth,windowHeight);
+
   for (var i = 0;i<stars.length;i++) {
     stars[i].update();
     stars[i].show();
@@ -36,61 +45,35 @@ function draw() {
       ashes.splice(i,1);
     }
   }
+  for (var i = 0;i<smokes.length;i++) {
+    smokes[i].update();
+    smokes[i].show();
+    if (smokes[i].pos.y>windowHeight) {
+      smokes.splice(i,1);
+    }
+  }
+
   if (mouseIsPressed == true) {
     stars.push(new Star());
     stars[stars.length-1].start();
   }
-	if (mouseIsPressed == false) {
-		regen = true;
-		stars.push(new Star());
-    stars[stars.length-1].start();
-	}
+  if (stuck == true) {
+    smokes.push(new Smoke());
+    smokes[smokes.length-1].start();
+  }
 }
 
 function Star() {
   this.start = function() {
-		 if (regen == true) {
-			 if (bgcol > 50) {
-			 	textSize(120);
-				textAlign("center");
-			 	fill(txtcol);
-
-			 	text(myText,(windowWidth/2),270);
-				txtcol -= 0.1;
-			 }
-
-			 this.col = color(220,220,220);
-   	   this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
-   		 this.velocity = new p5.Vector(0,5);
-   		 this.size = random(2,10);
-			 regen = false;
-		 }
-		 else {
-     	 this.col = color(random(255),random(255),random(255));
-   	   this.pos = new p5.Vector(mouseX,mouseY);
-   		 this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
-   		 this.size = random(2,10);
-			 regen = true;
-			 stars.push(new Star());
-			 stars[stars.length-1].start();
-		 }
+   this.col = color(random(255),random(255),random(255));
+   this.pos = new p5.Vector(mouseX,mouseY);
+	 this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
+	 this.size = random(2,10);
 	}
 
   this.update = function() {
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
-		if (this.velocity.x == 0) {
-			if (bgcol < 200 ){
-			if (this.velocity.y == -2) {
-				this.size -= 0.5;
-			}
-			}
-			else {
-				if (this.velocity.y == -2) {
-					this.size -= 5;
-				}
-			}
-		}
 		if (this.velocity.x != 0) {
     	this.velocity.y+=0.05;
     	if (this.pos.x<0) {
@@ -114,6 +97,9 @@ function Star() {
 					stuck = true;
           ashes.push(new Ash());
           ashes[ashes.length-1].start();
+          if (bgcol < 220) {
+						bgcol += 0.2;
+					}
 				}
 			}
 		}
@@ -122,7 +108,7 @@ function Star() {
 				if (this.velocity.y != 0) {
 					this.velocity.y = -2;
 					if (bgcol < 220) {
-						bgcol += 0.0002;
+						bgcol += 0.02;
 					}
 
 					if (this.pos.y>windowHeight) {
@@ -166,6 +152,37 @@ function Ash() {
       fill(this.col);
       ellipse(this.pos.x,this.pos.y,this.size,this.size);
   }
+  }
+}
+
+function Smoke() {
+  this.start = function() {
+    if (bgcol > 50) {
+     textSize(120);
+     textAlign("center");
+     fill(txtcol);
+
+     text(myText,(windowWidth/2),270);
+     txtcol -= 0.1;
+    }
+    this.col = color(220,220,220);
+    this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
+    this.velocity = new p5.Vector(0,5);
+    this.size = random(2,10);
+  }
+  this.update = function() {
+      this.pos.y -= 2.7;
+      if (bgcol < 200 ){
+        this.size -= 0.5;
+      }
+      else {
+        this.size -= 5;
+      }
+  }
+  this.show = function() {
+      noStroke();
+      fill(this.col);
+      ellipse(this.pos.x,this.pos.y,this.size,this.size);
   }
 }
 
