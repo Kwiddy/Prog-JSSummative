@@ -6,6 +6,7 @@ var stuck = false;
 var bgcol = 0;
 var txtcol = 220;
 var myText = "Your Text Here";
+var ranint = random(50,100);
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -142,28 +143,25 @@ function Star() {
 }
 
 function Ash() {
-  var a = 254
-  var b = 27
-  var c = 7
+  var a = 254;
+  var b = 27;
+  var c = 7;
   this.start = function() {
-    /*ADD RANDOM BLACK OR RED ASH? */
     this.col = color(a,b,c);
     this.pos = new p5.Vector(random(0, windowWidth),windowHeight);
     this.size = 5;
   }
   this.update = function() {
-    ranint = random(0,180)
-    if (this.pos.y > (windowHeight - ranint)) {
       this.pos.y -= 2.7;
       a -= 1;
-      b += 5;
-      c += 5;
+      b += 15;
+      c += 15;
       this.col = color(a,b,c);
       this.size -= 0.25;
-    }
   }
   this.show = function() {
-    if (this.pos.y > (windowHeight - 100)) {
+    ranint = random(50,100);
+    if (this.pos.y > (windowHeight - ranint)) {
       noStroke();
       fill(this.col);
       ellipse(this.pos.x,this.pos.y,this.size,this.size);
