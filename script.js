@@ -1,6 +1,8 @@
 var stars = [];
+var ashes = [];
+
 var regen = false;
-var sticked = false;
+var stuck = false;
 var bgcol = 0;
 var txtcol = 220;
 var myText = "Your Text Here";
@@ -26,18 +28,25 @@ function draw() {
       stars.splice(i,1);
     }
   }
+  for (var i = 0;i<ashes.length;i++) {
+    ashes[i].update();
+    ashes[i].show();
+    if (ashes[i].pos.y>windowHeight) {
+      ashes.splice(i,1);
+    }
+  }
   if (mouseIsPressed == true) {
-    stars.push(new star());
+    stars.push(new Star());
     stars[stars.length-1].start();
   }
 	if (mouseIsPressed == false) {
 		regen = true;
-		stars.push(new star());
+		stars.push(new Star());
     stars[stars.length-1].start();
 	}
 }
 
-function star() {
+function Star() {
   this.start = function() {
 		 if (regen == true) {
 			 if (bgcol > 50) {
@@ -61,7 +70,7 @@ function star() {
    		 this.velocity = new p5.Vector((mouseX-pmouseX)/5+random(-1,1),(mouseY-pmouseY)/5+random(-1,1));
    		 this.size = random(2,10);
 			 regen = true;
-			 stars.push(new star());
+			 stars.push(new Star());
 			 stars[stars.length-1].start();
 		 }
 	}
@@ -101,12 +110,14 @@ function star() {
 					this.velocity.x = 0;
 					this.pos.y = height;
 					this.size = random(20,25)
-					sticked = true;
+					stuck = true;
+          ashes.push(new Ash());
+          ashes[ashes.length-1].start();
 				}
 			}
 		}
 		else {
-			if (sticked == true) {
+			if (stuck == true) {
 				if (this.velocity.y != 0) {
 					this.velocity.y = -2;
 					if (bgcol < 220) {
@@ -127,6 +138,36 @@ function star() {
     noStroke();
     fill(this.col);
     ellipse(this.pos.x,this.pos.y,this.size,this.size);
+  }
+}
+
+function Ash() {
+  var a = 254
+  var b = 27
+  var c = 7
+  this.start = function() {
+    /*ADD RANDOM BLACK OR RED ASH? */
+    this.col = color(a,b,c);
+    this.pos = new p5.Vector(random(0, windowWidth),windowHeight);
+    this.size = 5;
+  }
+  this.update = function() {
+    ranint = random(0,180)
+    if (this.pos.y > (windowHeight - ranint)) {
+      this.pos.y -= 2.7;
+      a -= 1;
+      b += 5;
+      c += 5;
+      this.col = color(a,b,c);
+      this.size -= 0.25;
+    }
+  }
+  this.show = function() {
+    if (this.pos.y > (windowHeight - 100)) {
+      noStroke();
+      fill(this.col);
+      ellipse(this.pos.x,this.pos.y,this.size,this.size);
+  }
   }
 }
 
