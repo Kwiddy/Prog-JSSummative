@@ -8,12 +8,21 @@ var txtcol = 220;
 var myText = "Your Text Here";
 var ranint = random(50,100);
 
+var rval = 220;
+var gval = 220;
+var bval = 220;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
+
   myText = document.getElementById('myText').value;
+  rval = document.getElementById("rslide").value;
+  gval = document.getElementById("gslide").value;
+  bval = document.getElementById("bslide").value;
+
   if (myText == "") {
     myText = "Your Text Here"
   }
@@ -165,7 +174,7 @@ function Smoke() {
      text(myText,(windowWidth/2),270);
      txtcol -= 0.1;
     }
-    this.col = color(220,220,220);
+    this.col = color(rval,gval,bval);
     this.pos = new p5.Vector(randomint(windowWidth),windowHeight);
     this.velocity = new p5.Vector(0,5);
     this.size = random(2,10);
