@@ -18,7 +18,6 @@ Can be found at https://www.openprocessing.org/sketch/650003
 
 <b> General Possible Changes to Improve Original Code </b>
 <ul>
-  <li> Change particle colour</li>
   <li> Each particle can bounce [achieved] </li>
   <li> when bounce they half stick  [achieved] </li>
   <li> stuck = smoke + tiny particles + stay and burn [achieved]  </li>
@@ -26,12 +25,11 @@ Can be found at https://www.openprocessing.org/sketch/650003
   <li> Reduce the number of particles </li>
   <li> more realistic gravity [achieved] </li>
   <li> Perhaps the smoke reveals a word? [achieved]</li>
-  <li> sparks follow the smoke? </li>
-  <li> particles explode when stick? </li>
+  <li> sparks follow the smoke? [achieved]</li>
+  <li> particles explode when stick? [achieved]</li>
 </ul>
 <b> Ideas for options and sliders</b>
 <ul>
-  <li> Change Smoke Colour </li>
+  <li> Change Smoke Colour [achieved]</li>
   <li> Change text [achieved] </li>
-  <li> Change particle colour? </li>
 </ul>
