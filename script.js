@@ -40,7 +40,11 @@ function draw() {
     myText = "Your Text Here"
   }
   if (bgcol > 220) {
+    document.getElementById("boldh2").innerHTML = "The Screen is filled! Hit restart to go again!";
     return;
+  }
+  else {
+    document.getElementById("boldh2").innerHTML = "Change the colour of the smoke below!";
   }
   if (bgcol > 50) {
    textSize(120);
