@@ -19,6 +19,19 @@ function setup() {
 function draw() {
 
   myText = document.getElementById('myText').value;
+
+  var sendtxt = {
+    message : "'Your Text Here'",
+    set msg(value) {
+      this.message = value;
+    }
+  };
+
+  if (myText != "") {
+    sendtxt.msg = "'" + myText + "'";
+  }
+  document.getElementById("settxt").innerHTML = "The text that will be displayed is: " + sendtxt.message;
+
   rval = document.getElementById("rslide").value;
   gval = document.getElementById("gslide").value;
   bval = document.getElementById("bslide").value;
