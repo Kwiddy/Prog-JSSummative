@@ -1,7 +1,7 @@
 //Generating smoke particles
-function Smoke() {
+class Smoke {
   //Creation of particles
-  this.start = function() {
+  constructor() {
     //Displaying text over the smoke if smokey enough
     if (bgcol > 50) {
       textSize(120);
@@ -18,7 +18,7 @@ function Smoke() {
     this.size = random(2, 10);
   }
   //Updating the position and size of the particles
-  this.update = function() {
+  move() {
     this.pos.y -= 2.7;
     if (bgcol < 200) {
       this.size -= 0.5;
@@ -27,7 +27,7 @@ function Smoke() {
     }
   }
   //Displaying the particles
-  this.show = function() {
+  show() {
     noStroke();
     fill(this.col);
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
