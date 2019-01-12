@@ -1,7 +1,7 @@
 //Generating star particles
-function Star() {
+class Star {
   //Creating the particles
-  this.start = function() {
+  constructor() {
     this.col = color(random(255), random(255), random(255));
     this.pos = new p5.Vector(mouseX, mouseY);
     this.velocity = new p5.Vector((mouseX - pmouseX) / 5 + random(-1, 1), (mouseY - pmouseY) / 5 + random(-1, 1));
@@ -9,7 +9,7 @@ function Star() {
   }
 
   //Updating the particles position
-  this.update = function() {
+  move() {
     this.pos.x += this.velocity.x;
     this.pos.y += this.velocity.y;
     if (this.velocity.x != 0) {
@@ -32,9 +32,6 @@ function Star() {
           this.pos.y = height;
           this.size = random(20, 25)
           stuck = true;
-          //Starting generating ashes once stuck
-          ashes.push(new Ash());
-          ashes[ashes.length - 1].start();
           if (bgcol < 220) {
             bgcol += 0.2;
           }
@@ -59,7 +56,7 @@ function Star() {
   }
 
   //Displaying the particles on the canvas
-  this.show = function() {
+  show() {
     noStroke();
     fill(this.col);
     ellipse(this.pos.x, this.pos.y, this.size, this.size);
