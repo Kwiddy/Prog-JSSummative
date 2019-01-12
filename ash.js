@@ -1,19 +1,15 @@
 //Generating Ash Particles
-function Ash() {
-  //initialising local variables
-  var a = 254;
-  var b = 27;
-  var c = 7;
+class Ash {
 
   //Creating the particles
-  this.start = function() {
+  constructor() {
     this.col = color(a, b, c);
     this.pos = new p5.Vector(random(0, windowWidth), windowHeight);
     this.size = 5;
   }
 
   //Updating the position of the particles
-  this.update = function() {
+  move() {
     this.pos.y -= 2.7;
     //Updating the colour of the particles
     a -= 1;
@@ -24,7 +20,7 @@ function Ash() {
   }
 
   //Displaying the particles on the canvas
-  this.show = function() {
+  show() {
     //Allowing particles to travel to random and not uniform heights on the canvas
     ranint = random(50, 100);
     if (this.pos.y > (windowHeight - ranint)) {
