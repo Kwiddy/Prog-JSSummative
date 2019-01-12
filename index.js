@@ -17,6 +17,10 @@ var rval = 220;
 var gval = 220;
 var bval = 220;
 
+var a = 254;
+var b = 27;
+var c = 7;
+
 //Creating the canvas
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -110,21 +114,21 @@ function draw() {
 
   //Updating and showing all particles required
   for (var i = 0; i < stars.length; i++) {
-    stars[i].update();
+    stars[i].move();
     stars[i].show();
     if (stars[i].pos.y > windowHeight) {
       stars.splice(i, 1);
     }
   }
   for (var i = 0; i < ashes.length; i++) {
-    ashes[i].update();
+    ashes[i].move();
     ashes[i].show();
     if (ashes[i].pos.y > windowHeight) {
       ashes.splice(i, 1);
     }
   }
   for (var i = 0; i < smokes.length; i++) {
-    smokes[i].update();
+    smokes[i].move();
     smokes[i].show();
     if (smokes[i].pos.y > windowHeight) {
       smokes.splice(i, 1);
@@ -134,13 +138,13 @@ function draw() {
   //Actions dependant on the user
   if (mouseIsPressed == true) {
     stars.push(new Star());
-    stars[stars.length - 1].start();
   }
 
-  //Generating smoke particles if star particles have stuck to the bottom of the canvas
+  //Generating smoke and ash particles if star particles have stuck to the bottom of the canvas
   if (stuck == true) {
     smokes.push(new Smoke());
-    smokes[smokes.length - 1].start();
+    //Starting generating ashes once stuck
+    ashes.push(new Ash());
   }
 }
 
