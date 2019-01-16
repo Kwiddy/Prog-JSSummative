@@ -21,9 +21,6 @@ class Particles {
         if(this.cube) {
           createCanvas(windowWidth, windowHeight, WEBGL);
           this.g = createGraphics(windowWidth, windowHeight);
-          this.g.textAlign(CENTER);
-          this.g.textSize(64);
-          this.g.text('love', 150, 150);
         } else {
           createCanvas(windowWidth, windowHeight);
         }
