@@ -1,11 +1,13 @@
 class Particles {
     //Constructor for the creation of Particles
-    constructor(stuck, bgcol, txtcol) {
+    constructor(stuck, bgcol, txtcol, drawCube) {
 
         //Initialising Variables
         this.stars = [];
         this.smokes = [];
         this.ashes = [];
+
+        this.cube = render;
 
         this.rval = 220;
         this.gval = 220;
@@ -16,7 +18,15 @@ class Particles {
         this.txtcol = txtcol || 220;
 
         //Creating Canvas
-        createCanvas(windowWidth, windowHeight);
+        if(this.cube) {
+          createCanvas(windowWidth, windowHeight, WEBGL);
+          this.g = createGraphics(windowWidth, windowHeight);
+          this.g.textAlign(CENTER);
+          this.g.textSize(64);
+          this.g.text('love', 150, 150);
+        } else {
+          createCanvas(windowWidth, windowHeight);
+        }
 
         //Creating new stars/smoke/ashes when required
         for (var i = 0; i < this.stars.length; i++) {
@@ -54,11 +64,27 @@ class Particles {
         this._txtcol = txtcol;
     }
 
+    get cube() {
+        return this._cube;
+    }
+
+    set cube(cube) {
+        this._cube = cube;
+    }
+
     //Draw function
-    draw() {
-        //Changing Appearance of Canvas
+    draw(g) {
+
+      if (this.g) {
+          g = this.g;
+          background(0);
+      }
+      if (g) {
+          g.background(this.bgcol);
+      } else {
         fill(this.bgcol,10);
         rect(0,0,windowWidth,windowHeight);
+      }
 
         //Getting RBG Values from HTML Sliders with Getters
         this.rval = document.getElementById('rslide').value;
@@ -127,6 +153,15 @@ class Particles {
                 }
             }
 
+        }
+
+        if(this.g) {
+          rotateX(frameCount * 0.005); ///Change
+          rotateY(frameCount * 0.005); ///change
+          texture(this.g);
+          if (this.cube) {
+            box(windowWidth/3)
+          }
         }
 
         //Event listener to reset the smoke colour
@@ -236,10 +271,16 @@ class Star {
         }
     }
     //Displaying star particles
-    show() {
+    show(g) {
+      if (g) {
+        g.noStroke();
+        g.fill(this.col);
+        g.ellipse(this.pos.x,this.pos.y,this.size,this.size);
+      } else {
         noStroke();
         fill(this.col);
         ellipse(this.pos.x,this.pos.y,this.size,this.size);
+      }
     }
 
     //Getters and Setters
@@ -297,10 +338,16 @@ class Smoke {
         this.size -= 0.5;
     }
     //Displaying the particles
-    show() {
+    show(g) {
+      if (g) {
+        g.noStroke();
+        g.fill(this.col);
+        g.ellipse(this.pos.x,this.pos.y,this.size,this.size);
+      } else {
         noStroke();
         fill(this.col);
-        ellipse(this.pos.x, this.pos.y, this.size, this.size);
+        ellipse(this.pos.x,this.pos.y,this.size,this.size);
+      }
     }
 }
 
@@ -320,13 +367,19 @@ class Ash {
     }
 
     //Displaying the particles on the canvas
-    show() {
+    show(g) {
         //Allowing particles to travel to random and not uniform heights on the canvas
         var ranint = random(50, 100);
         if (this.pos.y > (windowHeight - ranint)) {
+          if (g) {
+            g.noStroke();
+            g.fill(this.col);
+            g.ellipse(this.pos.x, this.pos.y, this.size, this.size);
+          } else {
             noStroke();
             fill(this.col);
             ellipse(this.pos.x, this.pos.y, this.size, this.size);
+          }
         }
     }
 }
