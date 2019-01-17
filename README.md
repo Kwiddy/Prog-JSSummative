@@ -148,14 +148,14 @@ The final item in <b> draw(g) </b> is the variable <b> sendtxt </b> which links 
 
 <h4> update() </h4> The update function of the star first updates the position of each star via their current velocity:
 
-```     
+``` javascript
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
 ```
 
 The update function then also includes several choices depending on the position and velocity of the Star it is acting on. First, so long as the horizontal velocity is not zero, the vertical velocity slowly increases to resemble dispersion. <b> update() </b> then makes sure that Stars bounce off the sides of the containers instead of going off screen, and bounce off the floor if necessary. If none of these actions are required then the Star must be at a low enough point that sticking can occur in which case the stuck variable from Particles is retreived and set so that in the future <b> Smoke() </b> and <b> Ash() </b>. will begin generating. This final else statement appears as follows: <br>
 
-```
+``` javascript
     else {
                     this.velocity.y = 0;
                     this.velocity.x = 0;
@@ -167,7 +167,7 @@ The update function then also includes several choices depending on the position
 
 <br> <h4> show(g) </h4> The show function in <b> Star </b> is responsible for displaying the Star particles and is called in the <b> Particles </b> class. It is setup for an optional p5 renderer so that <b> g </b> can be used as a texture if wanted. This show function is the same for <b> Smoke </b> and <b> Ash </b> with the only exception being that <b> Ash </b> also has an if statement and a random number to make sure that the Ash particles travel a random distance up the screen instead of all disappearing uniformly. <br>
 
-```
+``` javascript
 show(g) {
       if (g) {
         g.noStroke();
@@ -189,13 +189,13 @@ The Smoke class generates smoke particles that slowly float up the screen enlarg
 <Br>
 <h4> constructor(): </h4> The smoke constructor first sets the <b> Particles </b> values for RBG as the values from the HTML sliders, an example of this is: <br>
             
-```
+``` javascript
 Particles.rval = document.getElementById('rslide').value;
 ```
 
 <br>
 
-```
+``` javascript
 this.col = color(Particles.rval, Particles.gval, Particles.bval);
 ```
 
@@ -203,7 +203,7 @@ this.col = color(Particles.rval, Particles.gval, Particles.bval);
 The constructor therefore sets the colour of the smoke to the value of the HTML RBG sliders. It then proceeds to create smoke particles at random positions along the bottom of the canvas with a slow velocity and random size. <br> <br>
 In the <b> Smoke constructor </b> I have also created the text that will appear though the smoke if the backgronud colour is light enough, this ensure that the smoke does not cover the text and therefore that the name is readable. <br>
 
-```
+``` javascript
 if (Particles.bgcol > 50) {
 
             textSize(120);
@@ -227,7 +227,7 @@ As you can see for this I need to regularly access the class <b> Particles </b>.
 <h3> class Ash: </h3>
 This is the simplest class in <i> particles.js </i> and is responsible for making small red particles that drift up randomly on the screen once smoke is being generated, they then quickly dissapear at random heights. Therefore the <b> constructor() </b> and <b> update() </b> functions are simply:
 
-```
+``` javascript
 constructor() {
       this.col = color(220, 20, 60);
       this.pos = new p5.Vector(random(0, windowWidth), windowHeight);
