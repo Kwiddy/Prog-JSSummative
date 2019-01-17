@@ -7,7 +7,7 @@
 <h2> Explanation of Methods and Parameters Used: </h2>
 <h3> class Particles: </h3> For each of my Classes I have used a constructor at the top to generate all necessary variables and attributes required for the creation of each particular particle.
 
-<b> Constructor: </b> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>.
+<h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>.
 ``` javascript
 constructor(stuck, bgcol, txtcol, render) {
         //Initialising Variables
@@ -51,7 +51,7 @@ This constructor creates all of the empty lists that will later be required to s
 
 This constructor also contains the <b> createCanvas() </b> method for if a p5 renderer is used and also for the case where it is not.
 
-<b> Getters and Setters: </b> Particles also contains several getters and setters to allow the necessary variables to be retrieved and set throughout the script. An example of a getter and setter for a variable used in Particles is as below:
+<h4> Getters and Setters: </h4> Particles also contains several getters and setters to allow the necessary variables to be retrieved and set throughout the script. An example of a getter and setter for a variable used in Particles is as below:
 ``` javascript
 //Getters and Setters
     get stuck() {
@@ -62,7 +62,7 @@ This constructor also contains the <b> createCanvas() </b> method for if a p5 re
         this._stuck = stuck;
     }
 ```
-<b> draw(g) </b>: The Particles class, like all others, has a draw function which is responsible for adding to the canvas. This function takes <b> g </b> as a parameter and therefore allows it to make decisions based on if a renderer is being used. As such, the first decision in this function is to determine the background colour / canvas appearance as seen below:
+<h4> draw(g) </h4> The Particles class, like all others, has a draw function which is responsible for adding to the canvas. This function takes <b> g </b> as a parameter and therefore allows it to make decisions based on if a renderer is being used. As such, the first decision in this function is to determine the background colour / canvas appearance as seen below:
 ``` javascript
 if (this.g) {
           g = this.g;
@@ -127,11 +127,11 @@ var sendtxt = {
         document.getElementById('settxt').innerHTML = 'The name that will be displayed is: ' + sendtxt.message;
 
 ```
-<h4> class Star: </h4>
-<b> constructor() </b> The star constructor creates 4 variables/attributes of the stars for use within the class. Each star is created with a random size and colour, the position generated is at the mouse and the mouse movements determine the velocity.
+<h3> class Star: </h3>
+<h4> constructor() </h4> The star constructor creates 4 variables/attributes of the stars for use within the class. Each star is created with a random size and colour, the position generated is at the mouse and the mouse movements determine the velocity.
 <br> <br>
 
-<b> update() </b>: The update function of the star first updates the position of each star via their current velocity:
+<h4> update() </h4>: The update function of the star first updates the position of each star via their current velocity:
 ```     this.pos.x+=this.velocity.x;
         this.pos.y+=this.velocity.y;
 ```
@@ -145,7 +145,7 @@ else {
                     Particles.stuck = true;
                 }
 ```
-<br> <b> show(g) </b> The show function in <b> Star </b> is responsible for displaying the Star particles and is called in the <b> Particles </b> class. It is setup for an optional p5 renderer so that <b> g </b> can be used as a texture if wanted. This show function is the same for <b> Smoke </b> and <b> Ash </b> with the only exception being that <b> Ash </b> also has an if statement and a random number to make sure that the Ash particles travel a random distance up the screen instead of all disappearing uniformly. <br>
+<br> <h4> show(g) </h4> The show function in <b> Star </b> is responsible for displaying the Star particles and is called in the <b> Particles </b> class. It is setup for an optional p5 renderer so that <b> g </b> can be used as a texture if wanted. This show function is the same for <b> Smoke </b> and <b> Ash </b> with the only exception being that <b> Ash </b> also has an if statement and a random number to make sure that the Ash particles travel a random distance up the screen instead of all disappearing uniformly. <br>
 ```
 show(g) {
       if (g) {
@@ -162,10 +162,10 @@ show(g) {
 <br>
 Following this there are also some getters and setters of the same form as seen in the <b> Particles </b> class.
 
-<h4> class Smoke: </h4>
+<h3> class Smoke: </h3>
 The Smoke class generates smoke particles that slowly float up the screen enlarging as they do so.
 <Br>
-<b> constructor: </b> The smoke constructor first sets the <b> Particles </b> values for RBG as the values from the HTML sliders, an example of this is: <br>
+<h4> constructor(): </h4> The smoke constructor first sets the <b> Particles </b> values for RBG as the values from the HTML sliders, an example of this is: <br>
 ```
 Particles.rval = document.getElementById('rslide').value;
 ```
@@ -196,8 +196,8 @@ if (Particles.bgcol > 50) {
 <br>
 As you can see for this I need to regularly access the class <b> Particles </b>. <br> <b> Smoke </b> also has a simple <b> update() </b> function to increase the size of the smoke and make it float upwards. and a <b> show(g) </b> function that is identical to the show function in the <b> Star </b> class.
 
-<h4> class Ash: </h4>
-This is the simplest class in <i> particles.js </i> and is responsible for making small red particles that drift up randomly on the screen once smoke is being generated, they then quickly dissapear at random heights. Therefore the <b> constructor() </b> and <b> update() </b> functions are simply: 
+<h3> class Ash: </h3>
+This is the simplest class in <i> particles.js </i> and is responsible for making small red particles that drift up randomly on the screen once smoke is being generated, they then quickly dissapear at random heights. Therefore the <b> constructor() </b> and <b> update() </b> functions are simply:
 ```
 constructor() {
       this.col = color(220, 20, 60);
