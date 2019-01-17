@@ -8,43 +8,43 @@
 <h3> class Particles: </h3> For each of my Classes I have used a constructor at the top to generate all necessary variables and attributes required for the creation of each particular particle.
 
 <h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>. <br>
-``` javascript
-    constructor(stuck, bgcol, txtcol, render) {
-        //Initialising Variables
-        this.stars = [];
-        this.smokes = [];
-        this.ashes = [];
+    ``` javascript
+        constructor(stuck, bgcol, txtcol, render) {
+            //Initialising Variables
+            this.stars = [];
+            this.smokes = [];
+            this.ashes = [];
 
-        this.cube = render;
+            this.cube = render;
 
-        this.rval = 220;
-        this.gval = 220;
-        this.bval = 220;
+            this.rval = 220;
+            this.gval = 220;
+            this.bval = 220;
 
-        this.stuck = stuck || false;
-        this.bgcol = bgcol || 0;
-        this.txtcol = txtcol || 220;
+            this.stuck = stuck || false;
+            this.bgcol = bgcol || 0;
+            this.txtcol = txtcol || 220;
 
-        //Creating Canvas
-        if(this.cube) {
-          createCanvas(windowWidth, windowHeight, WEBGL);
-          this.g = createGraphics(windowWidth, windowHeight);
-        } else {
-          createCanvas(windowWidth, windowHeight);
+            //Creating Canvas
+            if(this.cube) {
+              createCanvas(windowWidth, windowHeight, WEBGL);
+              this.g = createGraphics(windowWidth, windowHeight);
+            } else {
+              createCanvas(windowWidth, windowHeight);
+            }
+
+            //Creating new stars/smoke/ashes when required
+            for (var i = 0; i < this.stars.length; i++) {
+                this.stars[i] = new Star();
+            }
+            for (i = 0; i < this.smokes.length; i++) {
+                this.smokes[i] = new Smoke();
+            }
+            for (i = 0; i < this.ashes.length; i++) {
+                this.ashes[i] = new Ash();
+            }
         }
-
-        //Creating new stars/smoke/ashes when required
-        for (var i = 0; i < this.stars.length; i++) {
-            this.stars[i] = new Star();
-        }
-        for (i = 0; i < this.smokes.length; i++) {
-            this.smokes[i] = new Smoke();
-        }
-        for (i = 0; i < this.ashes.length; i++) {
-            this.ashes[i] = new Ash();
-        }
-    }
-```
+    ```
 This constructor creates all of the empty lists that will later be required to store the other particles generated and also includes the methods required to make new ones. Furthermore, many variables are initialised such as <b> this.cube </b> which can be used where appropriate with a renderer to print to each face of a cube, the colour variables for the RGB sliders, initially set at (220,220,220), and variables that will later be called to determine the creation of other elements of the script such as <b> stuck, bgcol <b> and <b> textcol </b>.
 
 <b> stuck </b> is a boolean storing whether any particles have stuck to the floor yet, <b> bgcol </b> stores the value of the background colour, and <b> txtcol </b> stores the colour of the text which will fade into view.
