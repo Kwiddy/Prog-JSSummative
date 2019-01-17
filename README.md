@@ -8,7 +8,7 @@
 <h3> class Particles: </h3> For each of my Classes I have used a constructor at the top to generate all necessary variables and attributes required for the creation of each particular particle.
 
 <h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>. <br>
-    ``` javascript
+``` javascript
         constructor(stuck, bgcol, txtcol, render) {
             //Initialising Variables
             this.stars = [];
