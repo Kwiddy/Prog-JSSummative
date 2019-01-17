@@ -1,6 +1,6 @@
 class Particles {
     //Constructor for the creation of Particles
-    constructor(stuck, bgcol, txtcol, drawCube) {
+    constructor(stuck, bgcol, txtcol, render) {
 
         //Initialising Variables
         this.stars = [];
@@ -153,8 +153,8 @@ class Particles {
         }
 
         if(this.g) {
-          rotateX(frameCount * 0.005); ///Change
-          rotateY(frameCount * 0.005); ///change
+          rotateX(frameCount * 0.005); 
+          rotateY(frameCount * 0.005);
           texture(this.g);
           if (this.cube) {
             box(windowWidth/3)
