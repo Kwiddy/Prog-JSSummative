@@ -9,7 +9,7 @@
 
 <h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>. <br>
 ``` javascript
-constructor(stuck, bgcol, txtcol, render) {
+    constructor(stuck, bgcol, txtcol, render) {
         //Initialising Variables
         this.stars = [];
         this.smokes = [];
@@ -64,7 +64,7 @@ This constructor also contains the <b> createCanvas() </b> method for if a p5 re
 ```
 <h4> draw(g) </h4> The Particles class, like all others, has a draw function which is responsible for adding to the canvas. This function takes <b> g </b> as a parameter and therefore allows it to make decisions based on if a renderer is being used. As such, the first decision in this function is to determine the background colour / canvas appearance as seen below:
 ``` javascript
-if (this.g) {
+    if (this.g) {
           g = this.g;
           background(0);
       }
@@ -77,7 +77,7 @@ if (this.g) {
 ```
 The draw function also uses <b> getElementById </b> statements to retrieve several elements from the HTML such as the value of the sliders to set the value of the <b> boldh2 </b> paragraph in the example page. Furthermore, there is an <b> addEventListener </b> to detect the click of a button signalling that the smoke colour should be reset (<b> resetsmoke() </b>). There are also iterations to continuously <b> update() </b> and <b> show() </b> each of the different particles, for example:
 ``` javascript
-for (var i = 0;i<this.stars.length;i++) {
+    for (var i = 0;i<this.stars.length;i++) {
             this.stars[i].update();
             this.stars[i].show();
             if (this.stars[i].pos.y>windowHeight) {
@@ -89,7 +89,7 @@ for (var i = 0;i<this.stars.length;i++) {
 
 In the case where a renderer is being used, the <b> draw(g) </b> function is responsible for controlling the rotation and the texture of the cube.
 ``` javascript
-if(this.g) {
+    if(this.g) {
           rotateX(frameCount * 0.005);
           rotateY(frameCount * 0.005);
           texture(this.g);
@@ -101,7 +101,7 @@ if(this.g) {
 
 It is in <b> draw(g) </b> that I also create the name to appear in the smoke if the background colour is light enough. This involves getting the different parts of the name (firstname and surname) and then use the properties of <b> this.fullName </b> to determine the validity of the names inputted. If invalid an error message is sent which then disappears when the mistake is rectified. An example of the verificating property:
 ``` javascript
-verifyFirst : function (firstName) {
+    verifyFirst : function (firstName) {
                 var reg = new RegExp(/\d+/);
                 if (reg.test(firstName)) {
                     this.firstName = '[INVALID]';
@@ -115,7 +115,7 @@ verifyFirst : function (firstName) {
 ```
 The final item in <b> draw(g) </b> is the variable <b> sendtxt </b> which links to a paragraph in the HTML document by the name <b> settxt </b> to output the name that will be displayed:
 ``` javascript
-var sendtxt = {
+    var sendtxt = {
             message: '\'Bruce Wayne\'',
             set msg(value) {
                 this.message = value;
@@ -131,13 +131,14 @@ var sendtxt = {
 <h4> constructor() </h4> The star constructor creates 4 variables/attributes of the stars for use within the class. Each star is created with a random size and colour, the position generated is at the mouse and the mouse movements determine the velocity.
 <br> <br>
 
-<h4> update() </h4>: The update function of the star first updates the position of each star via their current velocity:
-```     this.pos.x+=this.velocity.x;
-        this.pos.y+=this.velocity.y;
+<h4> update() </h4> The update function of the star first updates the position of each star via their current velocity:
+```     
+    this.pos.x+=this.velocity.x;
+    this.pos.y+=this.velocity.y;
 ```
 The update function then also includes several choices depending on the position and velocity of the Star it is acting on. First, so long as the horizontal velocity is not zero, the vertical velocity slowly increases to resemble dispersion. <b> update() </b> then makes sure that Stars bounce off the sides of the containers instead of going off screen, and bounce off the floor if necessary. If none of these actions are required then the Star must be at a low enough point that sticking can occur in which case the stuck variable from Particles is retreived and set so that in the future <b> Smoke() </b> and <b> Ash() </b>. will begin generating. This final else statement appears as follows: <br>
 ```
-else {
+    else {
                     this.velocity.y = 0;
                     this.velocity.x = 0;
                     this.pos.y = height;
