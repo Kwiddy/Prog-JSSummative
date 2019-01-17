@@ -6,6 +6,6 @@ function setup(bgcol, txtcol) {
 }
 
 //Draw function
-function draw() {
-    x.draw();
+function draw(g) {
+    x.draw(g);
 }
