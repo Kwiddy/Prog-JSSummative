@@ -26,10 +26,6 @@
         <td> Please enter your Surname: </td>
         <td><input type="text" id="surname"></td>
       </tr>
-      <tr>
-      <td> Activate optional p5.renderer </td>
-      <td> <input type="checkbox" id="render"> </td>
-      </tr>
     </table>
     <b> <i> <p id="warning"> </p> </i> </b>
 
@@ -40,7 +36,6 @@
   <p> <i> When you have too many particles just hit reset!</i> </p>
   <button value="refresh" onClick="window.location.reload()"> Restart </button>
   <button id="resetcol"> Reset Smoke Colour </button>
-  <button id="checkrender">Render</button>
   <center> <h2 id="boldh2"> Change the colour of the smoke below! </h2>
   </center>
 
@@ -63,16 +58,6 @@
 
   <p id="settxt"></p>
 
-  <script>
-    var render = document.getElementById("render").checked;
-
-    function checkrender() {
-      render = document.getElementById("render").checked;
-      setup(render);
-    }
-
-    document.getElementById("checkrender").addEventListener("click", checkrender);
-  </script>
 </body>
 
 </html>
