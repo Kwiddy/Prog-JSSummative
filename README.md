@@ -7,13 +7,15 @@
 <h2> Explanation of Methods and Parameters Used: </h2>
 <h3> class Particles: </h3> For each of my Classes I have used a constructor at the top to generate all necessary variables and attributes required for the creation of each particular particle.
 
-<h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>. 
-```Javascript
+<h4> Constructor(): </h4> The Particles constructor takes 4 parameters: <i> stuck, bgcol, txtcol</i> and <i> render </i>.
+
+```javascript
+
 constructor(stuck, bgcol, txtcol, render) {
-            //Initialising Variables
-            this.stars = [];
-            this.smokes = [];
-            this.ashes = [];
+//Initialising Variables
+this.stars = [];
+this.smokes = [];
+this.ashes = [];
 
             this.cube = render;
 
@@ -44,7 +46,9 @@ constructor(stuck, bgcol, txtcol, render) {
                 this.ashes[i] = new Ash();
             }
         }
-    ```
+        
+```
+
 This constructor creates all of the empty lists that will later be required to store the other particles generated and also includes the methods required to make new ones. Furthermore, many variables are initialised such as <b> this.cube </b> which can be used where appropriate with a renderer to print to each face of a cube, the colour variables for the RGB sliders, initially set at (220,220,220), and variables that will later be called to determine the creation of other elements of the script such as <b> stuck, bgcol <b> and <b> textcol </b>.
 
 <b> stuck </b> is a boolean storing whether any particles have stuck to the floor yet, <b> bgcol </b> stores the value of the background colour, and <b> txtcol </b> stores the colour of the text which will fade into view.
@@ -52,6 +56,7 @@ This constructor creates all of the empty lists that will later be required to s
 This constructor also contains the <b> createCanvas() </b> method for if a p5 renderer is used and also for the case where it is not.
 
 <h4> Getters and Setters: </h4> Particles also contains several getters and setters to allow the necessary variables to be retrieved and set throughout the script. An example of a getter and setter for a variable used in Particles is as below:
+
 ``` javascript
 //Getters and Setters
     get stuck() {
@@ -62,7 +67,9 @@ This constructor also contains the <b> createCanvas() </b> method for if a p5 re
         this._stuck = stuck;
     }
 ```
+
 <h4> draw(g) </h4> The Particles class, like all others, has a draw function which is responsible for adding to the canvas. This function takes <b> g </b> as a parameter and therefore allows it to make decisions based on if a renderer is being used. As such, the first decision in this function is to determine the background colour / canvas appearance as seen below:
+
 ``` javascript
     if (this.g) {
           g = this.g;
@@ -75,7 +82,9 @@ This constructor also contains the <b> createCanvas() </b> method for if a p5 re
         rect(0,0,windowWidth,windowHeight);
       }
 ```
+
 The draw function also uses <b> getElementById </b> statements to retrieve several elements from the HTML such as the value of the sliders to set the value of the <b> boldh2 </b> paragraph in the example page. Furthermore, there is an <b> addEventListener </b> to detect the click of a button signalling that the smoke colour should be reset (<b> resetsmoke() </b>). There are also iterations to continuously <b> update() </b> and <b> show() </b> each of the different particles, for example:
+
 ``` javascript
     for (var i = 0;i<this.stars.length;i++) {
             this.stars[i].update();
@@ -85,9 +94,11 @@ The draw function also uses <b> getElementById </b> statements to retrieve sever
             }
         }
 ```
+
 <b> draw()</b> is also responsible for actions such as if the mouse is pressed, in which case a new Star is created, as well as actions determined by the value of <b> stuck </b> which, if true, leads to the creation of <b> Ash </b> and <b> Smoke </b>, and effects <b> bgcol </b>.
 
 In the case where a renderer is being used, the <b> draw(g) </b> function is responsible for controlling the rotation and the texture of the cube.
+
 ``` javascript
     if(this.g) {
           rotateX(frameCount * 0.005);
@@ -100,6 +111,7 @@ In the case where a renderer is being used, the <b> draw(g) </b> function is res
 ```
 
 It is in <b> draw(g) </b> that I also create the name to appear in the smoke if the background colour is light enough. This involves getting the different parts of the name (firstname and surname) and then use the properties of <b> this.fullName </b> to determine the validity of the names inputted. If invalid an error message is sent which then disappears when the mistake is rectified. An example of the verificating property:
+
 ``` javascript
     verifyFirst : function (firstName) {
                 var reg = new RegExp(/\d+/);
@@ -113,7 +125,9 @@ It is in <b> draw(g) </b> that I also create the name to appear in the smoke if 
                 }
             },
 ```
+
 The final item in <b> draw(g) </b> is the variable <b> sendtxt </b> which links to a paragraph in the HTML document by the name <b> settxt </b> to output the name that will be displayed:
+
 ``` javascript
     var sendtxt = {
             message: '\'Bruce Wayne\'',
@@ -127,16 +141,20 @@ The final item in <b> draw(g) </b> is the variable <b> sendtxt </b> which links 
         document.getElementById('settxt').innerHTML = 'The name that will be displayed is: ' + sendtxt.message;
 
 ```
+
 <h3> class Star: </h3>
 <h4> constructor() </h4> The star constructor creates 4 variables/attributes of the stars for use within the class. Each star is created with a random size and colour, the position generated is at the mouse and the mouse movements determine the velocity.
 <br> <br>
 
 <h4> update() </h4> The update function of the star first updates the position of each star via their current velocity:
+
 ```     
     this.pos.x+=this.velocity.x;
     this.pos.y+=this.velocity.y;
 ```
+
 The update function then also includes several choices depending on the position and velocity of the Star it is acting on. First, so long as the horizontal velocity is not zero, the vertical velocity slowly increases to resemble dispersion. <b> update() </b> then makes sure that Stars bounce off the sides of the containers instead of going off screen, and bounce off the floor if necessary. If none of these actions are required then the Star must be at a low enough point that sticking can occur in which case the stuck variable from Particles is retreived and set so that in the future <b> Smoke() </b> and <b> Ash() </b>. will begin generating. This final else statement appears as follows: <br>
+
 ```
     else {
                     this.velocity.y = 0;
@@ -146,7 +164,9 @@ The update function then also includes several choices depending on the position
                     Particles.stuck = true;
                 }
 ```
+
 <br> <h4> show(g) </h4> The show function in <b> Star </b> is responsible for displaying the Star particles and is called in the <b> Particles </b> class. It is setup for an optional p5 renderer so that <b> g </b> can be used as a texture if wanted. This show function is the same for <b> Smoke </b> and <b> Ash </b> with the only exception being that <b> Ash </b> also has an if statement and a random number to make sure that the Ash particles travel a random distance up the screen instead of all disappearing uniformly. <br>
+
 ```
 show(g) {
       if (g) {
@@ -160,6 +180,7 @@ show(g) {
       }
     }
 ```
+
 <br>
 Following this there are also some getters and setters of the same form as seen in the <b> Particles </b> class.
 
@@ -167,16 +188,21 @@ Following this there are also some getters and setters of the same form as seen 
 The Smoke class generates smoke particles that slowly float up the screen enlarging as they do so.
 <Br>
 <h4> constructor(): </h4> The smoke constructor first sets the <b> Particles </b> values for RBG as the values from the HTML sliders, an example of this is: <br>
+            
 ```
 Particles.rval = document.getElementById('rslide').value;
 ```
+
 <br>
+
 ```
 this.col = color(Particles.rval, Particles.gval, Particles.bval);
 ```
+
 <br>
 The constructor therefore sets the colour of the smoke to the value of the HTML RBG sliders. It then proceeds to create smoke particles at random positions along the bottom of the canvas with a slow velocity and random size. <br> <br>
 In the <b> Smoke constructor </b> I have also created the text that will appear though the smoke if the backgronud colour is light enough, this ensure that the smoke does not cover the text and therefore that the name is readable. <br>
+
 ```
 if (Particles.bgcol > 50) {
 
@@ -194,11 +220,13 @@ if (Particles.bgcol > 50) {
 
         }
 ```
+
 <br>
 As you can see for this I need to regularly access the class <b> Particles </b>. <br> <b> Smoke </b> also has a simple <b> update() </b> function to increase the size of the smoke and make it float upwards. and a <b> show(g) </b> function that is identical to the show function in the <b> Star </b> class.
 
 <h3> class Ash: </h3>
 This is the simplest class in <i> particles.js </i> and is responsible for making small red particles that drift up randomly on the screen once smoke is being generated, they then quickly dissapear at random heights. Therefore the <b> constructor() </b> and <b> update() </b> functions are simply:
+
 ```
 constructor() {
       this.col = color(220, 20, 60);
@@ -212,6 +240,7 @@ constructor() {
       this.size -= 0.25;
   }
 ```
+
 The <b> show() </b> function is identical to <b> Smoke </b> and <b> Ash </b> except a random integer is used to decide at what point the ash particle is not shown, hence making the ash particles fade out randomly and not uniformly.
 
 <h2> Development of Original </h2> <br>
@@ -233,12 +262,15 @@ The original code involved generating particles of random colours when the mouse
 My example site involves my javascript canvas connected via getters and setters to several form controls on the website. These form controls include text inputs for the user to input names, buttons that can reset the page or reset the smoke colour, and RBG sliders to control the colour of the smoke. These sliders are set by default to a light grey (220,220,220). Getters and Setters then access the values by these form results and use them to alter the particles generated.
 
 There are inputs for a first name and surname, which will create the name outputted through the smoke, and if nothing is inputted then there is a default name in place ("Bruce Wayne"). Furthermore, there are RGB sliders to control the colour of the smoke generated, this can be changed whilst smoke is already being generated. There are also on screen instructions with a reset button below to re-setup the canvas once the particles have stopped generating. The site demonstrates how the javascript could be used with appropriate form controls to create a personalised animation. My component can be added to any HTML page by linking the page to the following external javascript files.
+
 ```HTML
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"> </script>
 <script type="text/javascript" src="particles.js"></script>
 <script type="text/javascript" src="index.js"></script>
 ```
+
 The main class of the component is <b> Particles </b>. To begin executing <b> Particles </b> we then use the following code in <b> index.js</b>
+
 ``` javascript
 var x;
 
